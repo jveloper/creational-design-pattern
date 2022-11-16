@@ -1,20 +1,16 @@
 package factory;
 
-import lombok.Getter;
-import lombok.Setter;
+public class PersonalLoan extends Loan{
 
-@Getter
-@Setter
-public class PersonalLoan extends Loan {
+    @Override
+    double calculateLoanMonthAmount() {
 
-    public PersonalLoan() {
-        super(LoanType.PERSONAL);
+        double interest = 1.7; //1.7%
+        return Math.round((this.amount/this.duration) * interest);
     }
 
     @Override
-    public double calcMonthAmount() {
-        return Math.round((this.totalAmount/this.monthDuration) * 1.06);
-
+    double calculateLoanAmount() {
+        return this.calculateLoanMonthAmount() * duration;
     }
-
 }

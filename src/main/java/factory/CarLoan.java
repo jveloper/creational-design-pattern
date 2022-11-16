@@ -1,18 +1,20 @@
 package factory;
 
-import lombok.Getter;
-import lombok.Setter;
-
-public class CarLoan extends Loan {
+public class CarLoan extends Loan{
 
     public CarLoan() {
-        super(LoanType.CAR);
+        this.loanType = LoanType.Car;
     }
 
     @Override
-    public double calcMonthAmount() {
-        return Math.round((this.totalAmount/this.monthDuration) * 1.03);
-
+    double calculateLoanMonthAmount() {
+        return Math.round((this.amount/this.duration) * 1.10);
     }
+
+    @Override
+    double calculateLoanAmount() {
+        return this.calculateLoanMonthAmount() * duration;
+    }
+
 
 }

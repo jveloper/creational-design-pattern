@@ -1,20 +1,14 @@
 package factory;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+public class LoanFactory extends AbstractFactory{
 
-public class LoanFactory {
+    @Override
+    public Loan createLoan(LoanType loanType) {
 
-    public Loan create(LoanType type) throws Exception {
-
-        switch (type){
-            case CAR : return new CarLoan();
-            case HOUSE: return new HouseLoan();
-            case PERSONAL: return new PersonalLoan();
-            default: throw new Exception ("Impossible create loan of type " + type.name());
-
-        }
-
+        return switch (loanType) {
+            case Car -> new CarLoan();
+            case House -> new HouseLoan();
+            case Personal -> new PersonalLoan();
+        };
     }
-
 }
